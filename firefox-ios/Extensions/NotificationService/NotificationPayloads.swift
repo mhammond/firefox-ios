@@ -12,6 +12,7 @@ struct NotificationSentTabs {
         static let urlKey = "url"
         static let displayURLKey = "displayURL"
         static let deviceNameKey = "deviceName"
+        static let privacyKey = "privacy"
     }
 }
 

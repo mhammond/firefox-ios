@@ -559,7 +559,7 @@ open class BrowserProfile: Profile,
                 if let id = $0.id {
                     constellation.sendEventToDevice(
                         targetDeviceId: id,
-                        e: .sendTab(title: item.title ?? "", url: item.url)
+                        e: .sendTab(title: item.title ?? "", url: item.url, privacy: item.isPrivate ? .privateTab : .normalTab)
                     )
                 }
             }

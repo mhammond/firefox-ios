@@ -85,7 +85,9 @@ extension FxAPushMessageHandler {
         case .tabReceived(_, let tabData):
             let title = tabData.entries.last?.title ?? ""
             let url = tabData.entries.last?.url ?? ""
-            let command = CommandReceived.tabReceived(tab: ["title": title, "url": url])
+            let isPrivate = tabData.entries.last?.isPrivate ?? false
+            let privacy = isPrivate ? "private" : "normal"
+            let command = CommandReceived.tabReceived(tab: ["title": title, "url": url, "privacy": privacy])
             return PushMessage.commandReceived(command: command)
         case .tabsClosed(_, let payload):
             let command = CommandReceived.tabsClosed(urls: payload.urls)

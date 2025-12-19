@@ -9,10 +9,12 @@ import UIKit
 public struct ShareItem: Sendable, Equatable {
     public let url: String
     public let title: String?
+    public let isPrivate: Bool
 
     public init(url: String, title: String?) {
         self.url = url
         self.title = title
+        self.isPrivate = false // XXX - fill this in?
     }
 
     // We only support sharing HTTP and HTTPS URLs, as well as data URIs.

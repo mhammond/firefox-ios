@@ -221,7 +221,10 @@ class SceneDelegate: UIResponder,
         // NotificationService.displayNewSentTabNotification()
         for tab in userInfo {
             guard let urlString = tab["url"] as? String,
+                  let privacyString = tab["privacy"] as? String,
                   let url = URL(string: urlString),
+                  // XXX - this makeRoute handles "private" as a url query - adding that seems wrong though?
+                  // let isPrivate = privacyString == "private",
                   let route = routeBuilder.makeRoute(url: url) else { continue }
             handle(route: route)
         }

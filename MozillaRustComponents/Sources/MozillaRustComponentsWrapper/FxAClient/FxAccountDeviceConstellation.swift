@@ -102,8 +102,8 @@ public class DeviceConstellation: @unchecked Sendable {
         DispatchQueue.global().async {
             do {
                 switch e {
-                case let .sendTab(title, url): do {
-                        try self.account.sendSingleTab(targetDeviceId: targetDeviceId, title: title, url: url)
+                case let .sendTab(title, url, privacy): do {
+                    try self.account.sendSingleTab(targetDeviceId: targetDeviceId, title: title, url: url, privacy: privacy)
                         completionHandler?(.success(()))
                     }
                 case let .closeTabs(urls):
@@ -181,7 +181,21 @@ public class DeviceConstellation: @unchecked Sendable {
     }
 }
 
+public enum TabPrivacy: Sendable {
+    case privateTab
+    case normalTab
+
+    func isPrivate() -> Bool {
+        switch self {
+            case .privateTab:
+                true
+            default:
+                false
+        }
+    }
+}
+
 public enum DeviceEventOutgoing: Sendable {
-    case sendTab(title: String, url: String)
+    case sendTab(title: String, url: String, privacy: TabPrivacy)
     case closeTabs(urls: [String])
 }

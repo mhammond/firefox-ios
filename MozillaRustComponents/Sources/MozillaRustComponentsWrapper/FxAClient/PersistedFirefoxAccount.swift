@@ -183,9 +183,9 @@ class PersistedFirefoxAccount {
         }
     }
 
-    func sendSingleTab(targetDeviceId: String, title: String, url: String) throws {
+    func sendSingleTab(targetDeviceId: String, title: String, url: String, privacy: TabPrivacy) throws {
         return try notifyAuthErrors {
-            try self.inner.sendSingleTab(targetDeviceId: targetDeviceId, title: title, url: url)
+            try self.inner.sendSingleTab(targetDeviceId: targetDeviceId, title: title, url: url, isPrivate: privacy.isPrivate())
         }
     }
 
